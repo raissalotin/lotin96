@@ -1,23 +1,34 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
+const contador = ref (10)
 
-const professor = ref({
-    nome: 'Eduardo da Silva',
-    disciplinas: [
-        'Desenvolvimento Web II', 
-        'Desenvolvimento de Aplicativos para Dispositivos Móveis',
-    ]
-})
-
-const possuiDisciplinas = computed(() => {
-    return professor.value.disciplinas.length > 0 ? 'Sim' : 'Não'
-})
+function incrementar (){
+  contador.value++
+}
+function decrementar(){
+  if (contador.value > 0)
+  contador.value--
+}
+function reset(){
+  contador.value = 0
+}
 </script>
 
 <template>
-    <div>
-        <h1>Professor</h1>
-        <p>Nome: {{ professor.nome }}</p>
-        <p>Possui disciplinas: {{ possuiDisciplinas }}</p>
-    </div>
+  <button @click="decrementar">-</button>
+  <button @click="incrementar">+</button>
+  <button @click="reset">c</button>
+  <p>Valor do contador: {{  contador }}</p>
 </template>
+
+<style scoped>
+button {
+  margin-left: 10px;
+  background-color: brown;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;  
+}</style>
+ 
